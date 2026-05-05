@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f3efe3;
+  --foreground: #1c1b18;
 }
 
 @theme inline {
@@ -12,15 +12,93 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), "Segoe UI", sans-serif;
+}
+
+.orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(55px);
+  opacity: 0.55;
+}
+
+.orb-a {
+  height: 420px;
+  width: 420px;
+  left: -120px;
+  top: -140px;
+  background: radial-gradient(circle at 30% 30%, #f8cf9f, #e48a4a 60%, #cf6635);
+  animation: driftA 14s ease-in-out infinite;
+}
+
+.orb-b {
+  height: 340px;
+  width: 340px;
+  right: -110px;
+  top: 26%;
+  background: radial-gradient(circle at 30% 30%, #c2e7d1, #6cb79a 55%, #4e9483);
+  animation: driftB 12s ease-in-out infinite;
+}
+
+.grain-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(28, 27, 24, 0.08) 0.5px, transparent 0.5px);
+  background-size: 3px 3px;
+  opacity: 0.15;
+}
+
+.surface-pop {
+  animation: surfaceIn 460ms ease-out;
+}
+
+.message-appear {
+  opacity: 0;
+  transform: translateY(8px);
+  animation: messageIn 420ms ease forwards;
+}
+
+@keyframes driftA {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(24px, 20px, 0) scale(1.06);
+  }
+}
+
+@keyframes driftB {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-22px, -16px, 0) scale(1.04);
+  }
+}
+
+@keyframes surfaceIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes messageIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
